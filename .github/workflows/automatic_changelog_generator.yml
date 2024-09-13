@@ -1,40 +1,47 @@
 name: Generate Changelog
 
 on:
+  # pull_request:
+  #   types: [ opened ]
   push:
     branches:
       - main
+  # Optionally you can use `workflow_dispatch` to run Changelog CI Manually
+  workflow_dispatch:
+    inputs:
+      release_version:
+        description: "Set Release Version"
+        required: true
 
 jobs:
-  changelog:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      # Checks-out your repository
+      - uses: actions/checkout@v2
 
-      - name: Generate changelog
-        uses: ardalanamini/auto-changelog@v4
+      - name: Run Changelog CI
+        uses: saadmk11/changelog-ci@v1.1.2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          commit-types: |
-            feat: New Features
-            fix: Bug Fixes
-            build: Build System & Dependencies
-            perf: Performance Improvements
-            docs: Documentation
-            test: Tests
-            refactor: Refactors
-            chore: Chores
-            ci: CI
-            style: Code Style
-            revert: Reverts
-          default-commit-type: Other Changes
-          release-name: v1.0.0
-          mention-authors: true
-          mention-new-contributors: true
-          include-compare-link: true
-          include-pr-links: true
-          include-commit-links: true
-          semver: true
-          use-github-autolink: true
+          # Optional, you can provide any name for your changelog file,
+          # We currently support Markdown (.md) and reStructuredText (.rst) files
+          # defaults to `CHANGELOG.md` if not provided.
+          changelog_filename: CHANGELOG.rst
+          # Optional, only required when you want more customization
+          # e.g: group your changelog by labels with custom titles,
+          # different version prefix, pull request title and version number regex etc.
+          # config file can be in JSON or YAML format.
+          config_file: changelog-ci-config.json
+          # Optional, This will be used to configure git
+          # defaults to `github-actions[bot]` if not provided.
+          committer_username: "test"
+          committer_email: "test@test.com"
+          # Optional, only required when you want to run Changelog CI
+          # on an event other than `pull_request` event.
+          # In this example `release_version` is fetched from `workflow_dispatch` events input.
+          # You can use any other method to fetch the release version
+          # such as environment variable or from output of another action
+          release_version: ${{ github.event.inputs.release_version }}
+          # Optional
+          github_token: ${{ secrets.GITHUB_TOKEN }}
