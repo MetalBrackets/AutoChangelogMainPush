@@ -3,3 +3,4 @@ Automatic changelog generation each time changes are pushed to the main branch b
 
 feature 1
 feature 2
+feature 3
