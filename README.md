@@ -40,5 +40,9 @@ Configuration complete 🚀
 # commande friend
 cz infos
 
+# commit whith conventionnal coimmt 
+cz commit
 
+# autoincremente version
+cz bump
 ```
