@@ -35,7 +35,7 @@ You can bump the version running:
 Configuration complete 🚀
 ```
 
-## How I use
+## Commit and versioning step by step
 ```sh
 # commande friend
 cz infos
@@ -45,6 +45,14 @@ cz commit
 
 # autoincremente version
 cz bump
+
+# push on your branch
+git push
+
+# push the tags
+git push --tag
+
+
 ```
 
 test
