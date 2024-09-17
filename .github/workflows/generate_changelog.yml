@@ -1,19 +1,19 @@
-name: Changelog generator
-on:
-  workflow_dispatch:
+# name: Changelog generator
+# on:
+#   workflow_dispatch:
 
-jobs:
-  generate-changelog:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+# jobs:
+#   generate-changelog:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
 
-      - name: Changelog generator
-        uses: dittrichlucas/changelog-generator@main
-        with:
-          token: ${{ github.token }}
-          repo: ${{ github.repository }}
+#       - name: Changelog generator
+#         uses: dittrichlucas/changelog-generator@main
+#         with:
+#           token: ${{ github.token }}
+#           repo: ${{ github.repository }}
 
-      - name: Check changelog file
-        run: cat CHANGELOG.md
+#       - name: Check changelog file
+#         run: cat CHANGELOG.md
