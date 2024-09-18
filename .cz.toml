@@ -21,6 +21,3 @@ changelog_template = """## {{ version }}
 # incremental = true
 # change_type_order = ["BREAKING CHANGE", "feat", "fix", "refactor", "perf"]
 
-
-
-
