@@ -78,7 +78,7 @@ jobs:
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 ```
 
-## Commit and versioning step by step
+## Usage
 
 ```sh
 # commande friend
@@ -95,6 +95,9 @@ git push
 
 # push the tags
 git push --tag
+
+tester
+git cz commit
 
 
 ```
