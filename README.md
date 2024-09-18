@@ -49,6 +49,7 @@ Aller dans Settings > Secrets > Actions > New reporitory secret
 -> Name : PERSONAL_ACCESS_TOKEN
 
 ## Github Action
+
 Créer le .github/workflows/bumpversion.yml  
 -> Documentation [ici](https://commitizen-tools.github.io/commitizen/tutorials/github_actions/)
 
@@ -97,3 +98,6 @@ git push --tag
 
 
 ```
+
+- > regarder s'il n'y a pas une commande pour le tester à la main
+  > -> regarder si un . cz.toml marche mieux
