@@ -1,106 +1,36 @@
 # AutoChangelogMainPush
 
-Automatic changelog generation each time changes are pushed to the main branch based on commits
+A simple method to automatically generate a changelog each time changes are pushed to the main branch, based on commit history.
+Final solution : Github Action [release-please](https://github.com/googleapis/release-please)
+Note : The problem with commitizen is that it doesn't generate commit links... too bad.
 
 ## Setup
 
-### Install Commitizen
+### GitHub: Create a Personal Access Token
 
-pip install --user -U Commitizen
-poetry add commitizen --group dev
-cz init
+**1. Generate a token**  
+Go to your GitHub account > Settings > Developer Settings > Personal access tokens  
+-> Give the workflow rights to access the repository  
+-> Copy the token
 
-```sh
-Welcome to commitizen!
-
-Answer the questions to configure your project.
-For further configuration visit:
-
-https://commitizen-tools.github.io/commitizen/config/
-
-? Please choose a supported config file:  pyproject.toml
-? Please choose a cz (commit rule): (default: cz_conventional_commits) cz_conventional_commits
-? Choose the source of the version: commitizen: Fetch and set version in commitizen config (default)
-? Is v0.1.0 the latest tag? No
-? Please choose the latest tag:  v0.1.0
-? Choose version scheme:  semver
-? Is "v$version" the correct tag format? Yes
-? Create changelog automatically on bump Yes
-? Keep major version zero (0.x) during breaking changes Yes
-? What types of pre-commit hook you want to install? (Leave blank if you don't want to install) done
-
-You can bump the version running:
-
-        cz bump
-
-Configuration complete 🚀
-```
-
-### GitHub : Créer un personal access token
-
-**1. Générer un token**
-Aller dans le compte Github > Settings > Developer Settings > Personal access tokens
--> Donner les droits au workflow pour l'accès au repos
--> Copier le token
-
-**2. Ajouter le token au repo**
-Aller dans Settings > Secrets > Actions > New reporitory secret
--> coller le token
--> Name : PERSONAL_ACCESS_TOKEN
-
-## Github Action
-
-Créer le .github/workflows/bumpversion.yml  
--> Documentation [ici](https://commitizen-tools.github.io/commitizen/tutorials/github_actions/)
-
-```yml
-name: Bump version
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  bump-version:
-    if: "!startsWith(github.event.head_commit.message, 'bump:')"
-    runs-on: ubuntu-latest
-    name: "Bump version and create changelog with commitizen"
-    steps:
-      - name: Check out
-        uses: actions/checkout@v3
-        with:
-          token: "${{ secrets.PERSONAL_ACCESS_TOKEN }}"
-          fetch-depth: 0
-      - name: Create bump and changelog
-        uses: commitizen-tools/commitizen-action@master
-        with:
-          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-```
+**2. Add the token to the repo**  
+Go to Settings > Secrets > Actions > New repository secret  
+-> Token name: PERSONAL_ACCESS_TOKEN  
+-> Paste the token
 
 ## Usage
 
-```sh
-# commande friend
-cz infos
+"Release Please automates CHANGELOG generation, the creation of GitHub releases, and version bumps for your projects.
+Release Please does so by parsing your git history, looking for [Conventional Commit messages](https://www.conventionalcommits.org/en/v1.0.0/), and creating release PRs."
 
-# commit whith conventionnal coimmt
-cz commit
+> [Documentation](https://github.com/googleapis/release-please)
 
-# autoincremente version
-cz bump
+**How to auto-increment versions with commits?**
 
-# push on your branch
-git push
+| version | commit type                           | description                                 |
+| ------- | ------------------------------------- | ------------------------------------------- |
+| major   | `feat!:`, `fix!:`, `refactor!:`, etc. | SemVer major : represents a breaking change |
+| minor   | `feat:`                               | SemVer minor : Represents a new feature     |
+| patch   | `fix:`                                | SemVer patch : Represents bug fixes         |
 
-# push the tags
-git push --tag
-
-tester
-git cz commit
-
-
-```
-
-- > regarder s'il n'y a pas une commande pour le tester à la main
-  > -> regarder si un . cz.toml marche mieux
+🤖 And voilà, it's automated!
