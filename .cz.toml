@@ -1,23 +1,11 @@
 [tool.commitizen]
 name = "cz_conventional_commits"
+# version_provider = "poetry"
 tag_format = "v$version"
 version_scheme = "semver"
 version = "0.5.0"
 update_changelog_on_bump = true
 major_version_zero = true
-
-changelog_template = """## {{ version }}
-{% for group, commits in groups.items %}
-### {{ group }}
-{% for commit in commits %}
-- {{ commit.message }} ([Voir le commit](https://github.com/MetalBrackets/AutoChangelogMainPush/commit/{{ commit.id }}))
-{% endfor %}
-{% endfor %}
-"""
-
-
-
-# [tool.commitizen.changelog]
-# incremental = true
-# change_type_order = ["BREAKING CHANGE", "feat", "fix", "refactor", "perf"]
+bump_message = "BUMP: version $current_version → $new_version"
+commit_url = "https://github.com/MetalBrackets/AutoChangelogMainPush/commit/$COMMIT_REV"
 
