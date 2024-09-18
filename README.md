@@ -1,4 +1,4 @@
-# AutoChangelogMainPush
+# Automatic Changelog
 
 A simple method to automatically generate a changelog each time changes are pushed to the main branch, based on commit history.
 Final solution : Github Action [release-please](https://github.com/googleapis/release-please)
