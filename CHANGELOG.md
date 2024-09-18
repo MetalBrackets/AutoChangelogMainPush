@@ -4,6 +4,13 @@
 
 - **test**: commit_url
 
+## [0.6.0](https://github.com/MetalBrackets/MB-gitops-auto_changelog_release/compare/v0.5.4...v0.6.0) (2024-09-18)
+
+
+### Features
+
+* **action:** new action for bump version ([#12](https://github.com/MetalBrackets/MB-gitops-auto_changelog_release/issues/12)) ([44192f6](https://github.com/MetalBrackets/MB-gitops-auto_changelog_release/commit/44192f61caf25830cd7ec61cfb7a97b8579e5e42))
+
 ## [0.5.4](https://github.com/MetalBrackets/AutoChangelogMainPush/compare/v0.5.3...v0.5.4) (2024-09-18)
 
 
