@@ -1,9 +1,3 @@
-## v0.5.3 (2024-09-18)
-
-### Fix
-
-- **test**: commit_url
-
 ## [0.6.0](https://github.com/MetalBrackets/MB-gitops-auto_changelog_release/compare/v0.5.4...v0.6.0) (2024-09-18)
 
 
